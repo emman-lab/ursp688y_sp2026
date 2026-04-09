@@ -5,10 +5,7 @@ import os
 
 def chunk_dataframe(df, chunk_size):
     df = df.copy()
-    chunks = []
-    number_chunks = len(df) // chunk_size + 1
-    for i in range(number_chunks):
-        chunks.append(df[i * chunk_size : (i + 1) * chunk_size])
+    chunks = [df.iloc[i:i + chunk_size] for i in range(0, len(df), chunk_size)]
     print(f'split dataframe into {len(chunks)} chunks')
     return chunks
 
@@ -36,7 +33,7 @@ def combine_csvs(output_dir, header='infer', names=None):
     "write a function that loads all the CSVs from the output folder and combines them into a single pandas dataframe"
     """
     # Use glob to get all CSV file paths in the output directory.
-    csv_files = glob.glob(os.path.join(output_dir, "*.csv"))
+    csv_files = sorted(glob.glob(os.path.join(output_dir, "*.csv")))
     
     # Create a list to store individual DataFrames.
     dataframes = []
