@@ -53,7 +53,7 @@ def geocode_csvs(input_dir, output_dir, test=False):
     os.makedirs(output_dir, exist_ok=True)
     
     # Get a list of all CSV files in the input directory.
-    csv_files = glob.glob(os.path.join(input_dir, "*.csv"))
+    csv_files = sorted(glob.glob(os.path.join(input_dir, "*.csv")))
     
     if not csv_files:
         print("No CSV files found in the input directory.")
@@ -76,6 +76,6 @@ def geocode_csvs(input_dir, output_dir, test=False):
                     print(f"    Already processed")
                     continue
             except FileNotFoundError:
-                geocode_csv(input_file, output_file)
+                geocode_csv(csv_file, output_file)
                 
         print("Completed all CSVs")
