@@ -1,5 +1,6 @@
 *.csv
 *.geoparquet
+*.geojson
 geocode_inputs
 geocode_outputs
 *.shp
