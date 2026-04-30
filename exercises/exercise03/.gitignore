@@ -3,3 +3,8 @@
 *.geojson
 geocode_inputs
 geocode_outputs
+*.shp
+*.dbf
+*.prj
+*.shx
+*.cpg
